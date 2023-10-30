@@ -19,8 +19,8 @@ export const Accordian = () => {
     
     return (
         <div>
-            <div class='row'>
-                <div class='col-12'>
+            <div className='row'>
+                <div className='col-12'>
                     HTML
                     {
                         (active !== undefined && active ===0) ? 
@@ -30,12 +30,12 @@ export const Accordian = () => {
                 </div>
                 { 
                     active === 0 && 
-                    <div col-12>
+                    <div className='col-12'>
                         {contentObject[active]}
                     </div>
                 }
                 
-                <div class='col-12'>
+                <div className='col-12'>
                     CSS
                     {
                         (active !== undefined && active ===1) ? 
@@ -50,7 +50,7 @@ export const Accordian = () => {
                     </div>
                 }
 
-                <div class='col-12'>
+                <div className='col-12'>
                     Javascript
                     {
                         (active !== undefined && active === 2) ? 
