@@ -1,38 +1,33 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-const API_URL = 'https://api.punkapi.com/v2/beers';
 
 export const Pagination = () => {
+    const api = 'https://api.punkapi.com/v2/beers';
     const [beers, setBeers] = useState([]);
-
-    const triggerApi = () => {
-        fetch(API_URL).
-        then(rawResponse => rawResponse.json()).
-        then(response => {
-            console.log(response, 'response');
-            setBeers((beers) => {
-                return beers = response
-            });
-            console.log(Array.isArray(beers), 'beers');
-        })
-        .catch(error => {
+    // const [page, set]?
+    const getBeers = (api) => {
+        fetch(api).
+        then(response => response.json()).
+        then(list => { 
+            setBeers(beers => beers = list)
+        }).catch(error => {
             throw(error);
-        })
-    };
+        }); 
+    }
 
     useEffect(() => {
-        triggerApi();
-    }, []);
-    
+        getBeers(api);
+     }, []);
+
     return (
-        <div>
+        <>
             {
-                beers.map((beer) => (
-                    <li key='{beer.id}'>
-                        'here' {beer.name};
+                (beers && beers.length) &&
+                beers.map(beer => (
+                    <li key={beer.id}>
+                        {beer.name}
                     </li>
                 ))
             }
-        </div>
-    );
-}
+        </>
+        )
+};
